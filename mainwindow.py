@@ -16,6 +16,17 @@ class MainWindow(QMainWindow):
         self.ui.agregar_inicio_pushButton.clicked.connect(self.click_agregar_inicio)
         self.ui.mostrar_pushButton.clicked.connect(self.click_mostrar)
 
+        self.ui.actionAbrir.triggered.connect(self.action_abrir_archivo)
+        self.ui.actionGuardar.triggered.connect(self.action_guardar_archivo)
+
+    @Slot()
+    def action_abrir_archivo(self):
+        print('abrir_archivo')
+
+    @Slot()
+    def action_guardar_archivo(self):
+        print('guardar archivo')
+
     @Slot()
     def click_agregar_final(self):
         id = self.ui.id_lineEdit.text()
