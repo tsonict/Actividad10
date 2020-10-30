@@ -1,7 +1,7 @@
 from algoritmos import distancia_euclidiana
 
 class Particula:
-    def __init__(self, id = 0, origen_x = 0-500, origen_y = 0-500, destino_x = 0-500, destino_y = 0-500, velocidad = 0, red = 0-255, green = 0-255, blue = 0-255):
+    def __init__(self, id = 0, origen_x = 0, origen_y = 0, destino_x = 0, destino_y = 0, velocidad = 0, red = 0, green = 0, blue = 0):
         self.__id = id
         self.__origenx = origen_x
         self.__origeny = origen_y
@@ -26,3 +26,16 @@ class Particula:
             'Blue: ' + str(self.__blue) + '\n' +
             'Distancia: ' + str(self.__distancia) + '\n'
         )
+
+    def to_dict(self):
+        return {
+            "id": self.__id,
+            "origen_x": self.__origenx,
+            "origen_y": self.__origeny,
+            "destino_x": self.__destinox,
+            "destino_y": self.__destinoy,
+            "velocidad": self.__velocidad,
+            "red": self.__red,
+            "green": self.__green,
+            "blue": self.__blue
+        }
