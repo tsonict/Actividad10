@@ -14,6 +14,15 @@ class Particulas:
         for particula in self.__list_particulas:
             print(particula)
 
+    def orden_id(self):
+        return self.__list_particulas.sort(key=lambda particula: particula.id)
+
+    def orden_distancia(self):
+        return self.__list_particulas.sort(key=lambda particula: particula.distancia, reverse=True)
+
+    def orden_velocidad(self):
+        return self.__list_particulas.sort(key=lambda particula: particula.velocidad)
+
     def __str__(self):
         return "".join(
             str(particula) + '\n' for particula in self.__list_particulas

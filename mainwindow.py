@@ -30,13 +30,28 @@ class MainWindow(QMainWindow):
         self.scene = QGraphicsScene()
         self.ui.graphicsView.setScene(self.scene)
 
+        self.ui.ordenID_pushButton.clicked.connect(self.orden_ID)
+        self.ui.orden_distancia_pushButton.clicked.connect(self.orden_Distancia)
+        self.ui.orden_velocidad_pushButton.clicked.connect(self.orden_Velocidad)
+
     def wheelEvent(self, event):
         if event.delta() >0:
             self.ui.graphicsView.scale(1.2, 1.2)
         else:
             self.ui.graphicsView.scale(0.8, 0.8)
 
-    
+    @Slot()
+    def orden_ID(self):
+        self.particulas.orden_id()
+
+    @Slot()
+    def orden_Distancia(self):
+        self.particulas.orden_distancia()
+
+    @Slot()
+    def orden_Velocidad(self):
+        self.particulas.orden_velocidad()
+
     @Slot()
     def dibujar(self):
         pen = QPen()
@@ -49,11 +64,6 @@ class MainWindow(QMainWindow):
             self.scene.addEllipse(particula.origenx, particula.origeny, 3, 3, pen)
             self.scene.addEllipse(particula.destinox, particula.destinoy, 3, 3, pen)
             self.scene.addLine(particula.origenx, particula.origeny, particula.destinox, particula.destinoy, pen)
-            
-            
-
-        
-
 
     @Slot()
     def limpiar(self):
