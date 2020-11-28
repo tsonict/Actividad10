@@ -23,6 +23,7 @@ class Particulas:
     def orden_velocidad(self):
         return self.__list_particulas.sort(key=lambda particula: particula.velocidad)
 
+
     def __str__(self):
         return "".join(
             str(particula) + '\n' for particula in self.__list_particulas

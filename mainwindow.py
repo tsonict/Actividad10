@@ -3,6 +3,7 @@ from PySide2.QtCore import Slot
 from ui_mainwindow import Ui_MainWindow
 from PySide2.QtGui import QPen, QColor, QTransform
 from random import randint
+from pprint import pprint, pformat
 from particulas import Particulas
 from particula import Particula
 
@@ -30,15 +31,58 @@ class MainWindow(QMainWindow):
         self.scene = QGraphicsScene()
         self.ui.graphicsView.setScene(self.scene)
 
+        
+
         self.ui.ordenID_pushButton.clicked.connect(self.orden_ID)
         self.ui.orden_distancia_pushButton.clicked.connect(self.orden_Distancia)
         self.ui.orden_velocidad_pushButton.clicked.connect(self.orden_Velocidad)
+
+        self.ui.mostrar_grafo_pushbutton.clicked.connect(self.mostrar_Grafo)
+        self.grafo = QGraphicsScene()
+        self.ui.grafica_grafo.setScene(self.grafo)
+
 
     def wheelEvent(self, event):
         if event.delta() >0:
             self.ui.graphicsView.scale(1.2, 1.2)
         else:
             self.ui.graphicsView.scale(0.8, 0.8)
+
+
+    @Slot()
+    def mostrar_Grafo(self):
+        grafo = dict()
+        for particula in self.particulas:
+            or_x = str(particula.origenx).upper()
+            or_y = str(particula.origeny).upper()
+            de_x = str(particula.destinox).upper()
+            de_y = str(particula.destinoy).upper()
+            peso = int(particula.distancia)
+            origen = or_x, or_y
+            destino = de_x, de_y
+
+            arista_o_d = (de_x, de_y, peso)
+            arista_d_o = (or_x, or_y, peso)
+
+            if origen in grafo:
+                grafo[origen].append(arista_o_d)
+            else:
+                grafo[origen] = [arista_o_d]
+            if destino in grafo:
+                grafo[destino].append(arista_d_o)
+            else:
+                grafo[destino] = [arista_d_o]
+        strn = pformat(grafo, width=40, indent=1)
+        for particula in self.particulas:
+            pen = QPen()
+            pen.setWidth(2)
+            color = QColor(particula.red, particula.green, particula.blue)
+            pen.setColor(color)
+            self.grafo.addEllipse(particula.origenx, particula.origeny, 3, 3, pen)
+            self.grafo.addEllipse(particula.destinox, particula.destinoy, 3, 3, pen)
+            self.grafo.addLine(particula.origenx + 3, particula.origeny + 3, particula.destinox, particula.destinoy, pen)
+        self.ui.text_edit_grafo.clear()
+        self.ui.text_edit_grafo.insertPlainText(strn)   
 
     @Slot()
     def orden_ID(self):
