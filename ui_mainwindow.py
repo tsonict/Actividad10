@@ -228,17 +228,42 @@ class Ui_MainWindow(object):
         self.text_edit_grafo = QPlainTextEdit(self.tab_4)
         self.text_edit_grafo.setObjectName(u"text_edit_grafo")
 
-        self.gridLayout_5.addWidget(self.text_edit_grafo, 0, 0, 1, 1)
+        self.gridLayout_5.addWidget(self.text_edit_grafo, 2, 0, 1, 1)
 
-        self.mostrar_grafo_pushbutton = QPushButton(self.tab_4)
-        self.mostrar_grafo_pushbutton.setObjectName(u"mostrar_grafo_pushbutton")
+        self.label_11 = QLabel(self.tab_4)
+        self.label_11.setObjectName(u"label_11")
 
-        self.gridLayout_5.addWidget(self.mostrar_grafo_pushbutton, 0, 1, 1, 1)
+        self.gridLayout_5.addWidget(self.label_11, 3, 0, 1, 1)
 
         self.grafica_grafo = QGraphicsView(self.tab_4)
         self.grafica_grafo.setObjectName(u"grafica_grafo")
 
-        self.gridLayout_5.addWidget(self.grafica_grafo, 0, 2, 1, 1)
+        self.gridLayout_5.addWidget(self.grafica_grafo, 2, 2, 1, 1)
+
+        self.Origenx_busqueda_lineEdit = QLineEdit(self.tab_4)
+        self.Origenx_busqueda_lineEdit.setObjectName(u"Origenx_busqueda_lineEdit")
+
+        self.gridLayout_5.addWidget(self.Origenx_busqueda_lineEdit, 4, 0, 1, 1)
+
+        self.label_12 = QLabel(self.tab_4)
+        self.label_12.setObjectName(u"label_12")
+
+        self.gridLayout_5.addWidget(self.label_12, 5, 0, 1, 1)
+
+        self.Origeny_busqueda_lineEdit = QLineEdit(self.tab_4)
+        self.Origeny_busqueda_lineEdit.setObjectName(u"Origeny_busqueda_lineEdit")
+
+        self.gridLayout_5.addWidget(self.Origeny_busqueda_lineEdit, 6, 0, 1, 1)
+
+        self.mostrar_grafo_pushbutton = QPushButton(self.tab_4)
+        self.mostrar_grafo_pushbutton.setObjectName(u"mostrar_grafo_pushbutton")
+
+        self.gridLayout_5.addWidget(self.mostrar_grafo_pushbutton, 6, 2, 1, 1)
+
+        self.busqueda_ap_pushButton = QPushButton(self.tab_4)
+        self.busqueda_ap_pushButton.setObjectName(u"busqueda_ap_pushButton")
+
+        self.gridLayout_5.addWidget(self.busqueda_ap_pushButton, 4, 2, 1, 1)
 
         self.tabWidget.addTab(self.tab_4, "")
         MainWindow.setCentralWidget(self.centralwidget)
@@ -299,7 +324,10 @@ class Ui_MainWindow(object):
         self.dibujar_pushbutton.setText(QCoreApplication.translate("MainWindow", u"Dibujar", None))
         self.limpiar_pushbutton.setText(QCoreApplication.translate("MainWindow", u"Limpiar", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"Grafica", None))
+        self.label_11.setText(QCoreApplication.translate("MainWindow", u"Origen x:", None))
+        self.label_12.setText(QCoreApplication.translate("MainWindow", u"Origen y:", None))
         self.mostrar_grafo_pushbutton.setText(QCoreApplication.translate("MainWindow", u"Mostrar", None))
+        self.busqueda_ap_pushButton.setText(QCoreApplication.translate("MainWindow", u"Busqueda", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), QCoreApplication.translate("MainWindow", u"Grafos", None))
         self.menuArchivo.setTitle(QCoreApplication.translate("MainWindow", u"Archivo", None))
     # retranslateUi

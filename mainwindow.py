@@ -5,6 +5,7 @@ from PySide2.QtGui import QPen, QColor, QTransform
 from random import randint
 from pprint import pprint, pformat
 from particulas import Particulas
+from algoritmos import busquedaProfundidad, busquedaAmplitud
 from particula import Particula
 
 class MainWindow(QMainWindow):
@@ -41,12 +42,60 @@ class MainWindow(QMainWindow):
         self.grafo = QGraphicsScene()
         self.ui.grafica_grafo.setScene(self.grafo)
 
+        self.ui.busqueda_ap_pushButton.clicked.connect(self.busquedas)
+
 
     def wheelEvent(self, event):
         if event.delta() >0:
             self.ui.graphicsView.scale(1.2, 1.2)
         else:
             self.ui.graphicsView.scale(0.8, 0.8)
+
+
+
+
+    @Slot()
+    def busquedas(self):
+        grafo = dict()
+        for particula in self.particulas:
+            or_x = str(particula.origenx).upper()
+            or_y = str(particula.origeny).upper()
+            de_x = str(particula.destinox).upper()
+            de_y = str(particula.destinoy).upper()
+            peso = int(particula.distancia)
+            origen = or_x, or_y
+            destino = de_x, de_y
+
+            arista_o_d = (de_x, de_y, peso)
+            arista_d_o = (or_x, or_y, peso)
+
+            if origen in grafo:
+                grafo[origen].append(arista_o_d)
+            else:
+                grafo[origen] = [arista_o_d]
+            if destino in grafo:
+                grafo[destino].append(arista_d_o)
+            else:
+                grafo[destino] = [arista_d_o]
+
+        origenx = self.ui.Origenx_busqueda_lineEdit.text()
+        origeny = self.ui.Origeny_busqueda_lineEdit.text()
+        origen = origenx, origeny
+
+        if self.ui.Origenx_busqueda_lineEdit.text() == "" or self.ui.Origeny_busqueda_lineEdit.text() == "":
+
+            QMessageBox.warning(self, "Atencion", "Alguno de los campos esta vacio.")
+
+        else:
+            print("Profundidad: ")
+            print(busquedaProfundidad(grafo, origen))
+            print("Amplitud: ")
+            print(busquedaAmplitud(grafo, origen))
+
+
+            
+
+        
 
 
     @Slot()
